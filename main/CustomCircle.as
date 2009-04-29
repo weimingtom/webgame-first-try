@@ -1,7 +1,8 @@
 package
 {
   import flash.display.*;
-  public class CustomCircle extends Shape
+  //牢记显示对象构成的层次结构
+  public class CustomCircle extends Sprite
   {
     private var xPos:Number;
     private var yPos:Number;
