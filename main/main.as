@@ -3,12 +3,21 @@ package
   import flash.display.Sprite;
   import flash.events.*;
   import flash.net.*;
+  import flash.events.MouseEvent;
 
   public class main extends Sprite
   {
+    private var dragshape:CustomCircle;
+
     public function main()
     {
-    
+      //创造一个可拖拽的对象
+      dragshape = new CustomCircle(10,10,100,0xFFCC00);
+      dragshape.addEventListener(MouseEvent.MOUSE_DOWN,startDragging);
+      dragshape.addEventListener(MouseEvent.MOUSE_UP,stopDragging);
+      this.addChild(dragshape);
+
+      /*
       //绘制自定义的图形,并添加到Sprite里
       var circle1:CustomCircle = new CustomCircle(10,10,100,0xFFCC00);
       this.addChild(circle1);
@@ -18,7 +27,7 @@ package
       this.addChild(circle3);
       //交换图形的层
       this.swapChildrenAt(0,1);
-
+*/
       //在Sprite上填充的颜色
       this.graphics.lineStyle(2,0x00CC00);
       this.graphics.beginFill(0x0000AA);
@@ -46,5 +55,11 @@ package
     {
       //Debugger.echo("loaderCompleteHandler called"+event.target.data,this);
     }
+
+    private function startDragging(event:MouseEvent):void
+    {dragshape.startDrag();}
+
+    private function stopDragging(event:MouseEvent):void
+    {dragshape.stopDrag();}
   }
 }
