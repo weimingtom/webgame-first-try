@@ -1,0 +1,69 @@
+
+查看所有参数项mxmlc -help list 或者某个参数的使用mxmlc -help -use-network
+属性描述
+accessible=true|false是否具有可理解性（如为残疾人提供方便的性能）
+actionscript-file-encoding设置文件编码，如Shitf_JIS
+advancedmxmlc -help advanced，如这样的高级参数
+allow-source-path-overlap=true|false验证source-path中定义的路径是否出现重叠，出现互相包含的现象
+as3=true|false是否使用as3对象模型，默认为ture，如果选false，则es一定要定义为true
+benchmark=true|false是否输出编译时期的详细内容，默认是true
+context-root； context-path设置flex-services.xml中的{context.root}，如果没有详细定义，那flex将用空值。
+contributor name添加到swf文件里，name是贡献者的名字
+creator name添加到swf文件里，name是作者的名字
+date text添加到swf文件里，text是数据的内容
+debug=true|false是否可以进行调试
+debug-password string远程调试用，设置密码
+default-background-color int默认背景颜色，默认为null，例如： -default-background-color=0xCCCCFF
+default-frame-rate int设置帧数，默认为24
+default-script-limits
+max-recursion-depth
+max-execution-time定义应用脚本程序的执行限制最大的递归默认是：1000
+最大的执行时间默认是：60，你不能设置比60还大。
+default-size width height设置应用程序的大小，单位是像素
+defaults-css-url string设置css 的路径
+description text添加到swf文件里的描述内容，text是描述的内容
+dump-config filename将次配置内容输出到filename的文件里，如：mxmlc -dump-config myapp-config.xml
+es=true|false略
+externs symbol [...]略
+external-library-path path-element [...]外部类的路径
+file-specs path-element [...]指定源文件去编译，这默认的是 mxmlc编译器
+fonts.languages.language-range lang range指定 Unicode编码语言的范围
+fonts.managers manager-class [...]字体管理器，默认的是 flash.fonts.JREFontManager，也可以使用 flash.fonts.BatikFontManager
+fonts.max-cached-fonts string在服务器缓存上可以保存的最大字体数
+fonts.max-glyphs-per-face string最大限度的字符缓存
+frames.frame label class name [...]将一系列的类名指定到相应label标记的帧上
+generate-frame-loader=true|false绑定到默认的loader类上。
+headless-server=true|false能否设置编译器的执行头文件，如：System.setProperty(”java.awt.headless”, “true”)
+help帮助
+include-libraries library [...]连接所有的在swc中的类，不管是否有被引用
+includes class [...]引用具体的类，使用此参数
+incremental=true|false增加编辑，默认的是false
+keep-generated-actionscript=true|false保持原有的as，放在 /generated目录下，默认的值是false
+language code设置swf文件的元数据
+lazy-init=true|false预设字母表的编码，默认是false
+library-path path-element [...]连接SWC 文件得到swf文件，默认的路径是libs目录和相同目录下的所有swc文件。可以用=替换现在的swc，也可以用+=添加。也可以通过配置文件（略）。
+link-report filename打印详细的连接报告
+load-config filename指定编译器详细的配置文件，覆盖所有的命令行参数，可以通过+=连接多个配置文件。
+load-externs filename [...]外部足见的动态连接的信息保存（略）
+locale string将路径定位存到locale,就可以通过{local}调用了，如：mxmlc -locale en_EN -source-path locale/{locale} -file-specs MainApp.mxml
+localized-description text langSwf文件的元数据
+namespaces.namespace uri manifest指定mxml文件的命名空间，可以用 uri或本地的证明文件。
+optimize=true|false优化as，减少文件大小，增加性能，默认为false
+output filename指定输出文件名字，如果不指定就用当前文件名。如果路径不存在，将会自动生成。
+publisher nameSwf文件的元数据，发布人的名字
+resource-bundle-list filename打印所有源数据包名字，并打包到一个swc文件中，filename将是这个swc的文件名。
+runtime-shared-libraries url [...]指定一系列运行时共享库，如果library.swf在 web_root/libraries目录下，那你可以使用 libraries/library.swf.来调用。
+services filename指定 services-config.xml文件，该文件用在FDS中
+show-binding-warnings=true|false当flash player不能探测时，显示警告。默认为true
+show-actionscript-warnings=true|false发生as类错误时，发出提示。默认为true。
+show-deprecation-warnings=true|false为flex组件显示不可用。默认为true
+source-path path-element [...]添加源路径的路径或文件，会自动寻找mxml和as文件。可以使用通配符包含所有的文件和子路径，连接全部的文件，不能单个使用类和路径，可以使用+=。
+strict=true|false输出为定义的属性和函数，也能执行编译时期类型的验证和提供默认参数。默认为true
+theme filename [...]指定主题数组
+title textSwf的元数据
+use-network=true|false指定当前应用程序的网络服务，默认为true.如果设为false就只能访问本地，不能访问网络。
+verbose-stacktraces=true|false默认值为false，只在运行发生错误时候，提供错误显示。
+version编译器的版本号
+warn-warning_type=true|false是否验证自定义警告类型。
+warnings=true|false如果设置false就废除所有的警告，此参数覆盖 warn-warning_typed 的值默认为true。
+本文来源于 冰山上的播客 http://xinsync.xju.edu.cn , 原文地址：http://xinsync.xju.edu.cn/index.php/archives/4016
