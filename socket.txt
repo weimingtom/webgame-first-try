@@ -1,0 +1,12 @@
+socket安全设置：
+main目录中的crossdomainserver.py提供socket授权服务。
+
+使用socket前需要Socket授权。
+Security.loadPolicyFile("xmlsocket://www.***.com:843"); 
+然后可以正常调用。
+
+使用URLRequest需要http授权。
+Security.loadPolicyFile("xmlsocket://www.***.com:843"); 
+然后可以正常调用。
+
+某些低版本的flash中，此授权服务可选，但是最新版的flash中，授权为必须。
