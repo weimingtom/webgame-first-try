@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" creationComplete="initApp()">
+<mx:Script>
+<![CDATA[
+	import flash.net.Socket;
+
+	private var socket:Socket;
+
+	private function initApp():void
+	{
+	  socket = new Socket();
+	  socket.addEventListener(Event.CONNECT, connectHandler);
+          socket.addEventListener(Event.CLOSE, closeHandler);
+          socket.addEventListener(ErrorEvent.ERROR, errorHandler);
+          socket.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+          socket.addEventListener(ProgressEvent.SOCKET_DATA, dataHandler);
+	}
+
+	private function connect():void
+	{
+	  try 
+	  {
+		msg("Trying to connect to " + serverName.text + ":" + portNumber.text + "\n");
+		socket.connect(serverName.text, int(portNumber.text));
+          } 
+	  catch (error:Error)
+	  {
+                msg(error.message + "\n");
+                socket.close();
+          }
+	}
+
+	private function sendMessage():void
+	{
+	  socket.writeMultiByte(command.text,"gb2312");
+	  socket.flush();
+	  msg("send message '" +command.text+ "' to server\n");
+	}
+
+	private function msg(value:String):void
+	{
+	  output.text += value;
+	}
+
+        private function connectHandler(event:Event):void {
+            if (socket.connected) {
+	        console.enabled = true;
+                msg("connected...\n");
+            } else {
+                msg("unable to connect\n");
+            }
+        }
+
+        private function closeHandler(event:Event):void {
+            msg("closed...\n");
+        }
+
+        private function errorHandler(event:ErrorEvent):void {
+            msg(event.text + "\n");
+        }
+
+	public function ioErrorHandler(event:IOErrorEvent):void {
+            msg("Unable to connect: socket error.\n");
+        }
+
+	private function dataHandler(event:ProgressEvent):void {
+            msg("get message " +  socket.readMultiByte(socket.bytesAvailable,"gb2312") +"from server\n");
+        }
+]]>
+</mx:Script>
+
+    <mx:ApplicationControlBar width="100%">
+        <mx:Label text="Server:" />
+        <mx:TextInput id="serverName" width="100%" />
+        <mx:Spacer />
+        <mx:Label text="Port:" />
+        <mx:TextInput id="portNumber" text="23" textAlign="right" maxChars="5" restrict="0-9" />
+        <mx:Spacer />
+        <mx:Button label="Login" click="connect();" />
+    </mx:ApplicationControlBar>
+
+    <mx:Spacer />
+    <mx:Panel id="console" enabled="false" width="100%" height="100%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+        <mx:TextArea id="output" editable="false" width="100%" height="100%" fontFamily="Courier New" />
+        <mx:ControlBar>
+            <mx:Label text="发送信息：" />
+            <mx:TextInput id="command" width="100%" enter="sendMessage();" />
+            <mx:Button label="Send" click="sendMessage();" />
+        </mx:ControlBar>
+    </mx:Panel>
+</mx:Application>
