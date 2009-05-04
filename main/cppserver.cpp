@@ -93,11 +93,11 @@ DWORD WINAPI ClientThread(LPVOID lpParam)
 				closesocket(sock);
 				return 0;
 			}
-			nLeft = strlen(szPolicy);
+			nLeft = strlen(sendbuff);
 			idx = 0;
 			while(nLeft > 0)
 			{
-				ret = send(sock,&szPolicy[idx],nLeft,0);
+				ret = send(sock,&sendbuff[idx],nLeft,0);
 				if(ret == 0)
 					break;
 				else
